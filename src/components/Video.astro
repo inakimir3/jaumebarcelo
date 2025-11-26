@@ -1,0 +1,75 @@
+<section class="grid grid-cols-12 px-5 lg:px-10 gap-4 relative w-full ">
+
+    <article 
+        class="-mt-10 w-full aspect-6/4 relative col-start-1 lg:col-start-2 col-span-12 lg:col-span-5 rounded-xl overflow-hidden cursor-pointer"
+        id="open-video"
+    >
+        <img src="images/icon/play.svg" class="w-16 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"/>
+        <img src="images/jaume2.webp" class="w-full aspect-6/4 rounded-xl object-cover"/>
+    </article>
+
+    <article class="mt-10 col-start-1 lg:col-start-8 col-span-12 lg:col-span-3 flex flex-col gap-4">
+        <h3 class="text-blue font-semibold">Watch video</h3>
+        <h2 class="text-[40px] leading-12">Improving Skills <span class="font-bold">Easier Than Ever</span></h2>
+        <p class="text-gray font-inter">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi ipsum, tempor eleifend luctus vitae.</p>
+        <div class="flex items-center gap-4">
+            <button id="open-video-btn" class="cursor-pointer font-inter bg-blue text-[18px] w-fit px-8 py-2 rounded-full">Watch video</button>
+            <a href="#about" class="font-inter bg-white text-dark-blue text-[18px] w-fit px-8 py-2 rounded-full">About me</a>
+        </div>
+    </article>
+</section>
+
+<!-- MODAL VIDEO -->
+<div 
+    id="video-modal"
+    class="fixed inset-0 bg-black/80 backdrop-blur-sm flex justify-center items-center z-50 hidden"
+>
+    <div class="relative w-full max-w-4xl px-4">
+        <button 
+            id="close-video" 
+            class="absolute top-0 cursor-pointer right-0 text-white text-3xl font-bold"
+        >
+            ✕
+        </button>
+
+        <video 
+            id="video-player"
+            src="videos/video.MP4" 
+            controls 
+            autoplay
+            class="w-full max-h-[90vh] rounded-2xl"
+        ></video>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById("video-modal");
+    const open1 = document.getElementById("open-video");
+    const open2 = document.getElementById("open-video-btn");
+    const close = document.getElementById("close-video");
+    const video = document.getElementById("video-player");
+    video.pause();
+
+
+    function openModal() {
+        modal.classList.remove("hidden");
+        video.currentTime = 0;
+        video.play();
+        document.body.style.overflow = "hidden"; // bloquea scroll
+    }
+
+    function closeModal() {
+        modal.classList.add("hidden");
+        video.pause();
+        document.body.style.overflow = "auto";
+    }
+
+    open1.addEventListener("click", openModal);
+    open2.addEventListener("click", openModal);
+    close.addEventListener("click", closeModal);
+
+    // Cerrar si clicas fuera del video
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeModal();
+    });
+</script>

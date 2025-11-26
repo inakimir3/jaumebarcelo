@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --color-black: #050515;
+    --color-dark-blue: #0B131E;
+    --color-blue: #00A6FF;
+    --color-gray: #BABABA;
+
+    --font-inter: 'Inter';
+}
+
+@font-face {
+    font-family: Clash Display;
+    src: url("fonts/ClashDisplay.ttf") format("truetype");
+}
+
+body {
+    background-color: var(--color-dark-blue);
+    font-family: 'Clash Display';
+    color: white;
+}
+
