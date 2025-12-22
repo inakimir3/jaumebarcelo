@@ -2,17 +2,19 @@
 import Gradient from "../assets/Gradient.astro"
 ---
 
-<section class="grid grid-cols-12 px-5 lg:px-10 gap-4 relative w-full h-screen bg-dark-blue overflow-hidden">
-    <h1 class="pt-30 z-10 relative col-start-2 col-span-6 flex flex-col text-8xl items-center justify-end">
+<section class="grid grid-cols-4 lg:grid-cols-12 px-5 lg:px-10 gap-0 lg:gap-4 relative w-full h-auto lg:h-screen bg-dark-blue overflow-hidden">
+    <h1 class="pt-24 lg:pt-30 z-10 relative col-start-1 lg:col-start-2 col-span-4 lg:col-span-6 flex flex-col text-3xl lg:text-8xl items-start lg:items-center justify-start lg:justify-end h-fit">
         <span>Jaume Barceló</span>
         <span class="font-bold">Tennis Coach</span>
     </h1>
-    <article class="z-10 col-start-3 col-span-4 flex flex-col   gap-6">
-        <p class="text-gray font-inter max-w-[390px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce mi ipsum, tempor eleifend luctus vitae.</p>
-        <a href="#contact" class="bg-blue text-[18px] w-fit px-8 py-2 rounded-full">Contact me</a>
+    <article class="pt-5 lg:pt-0 pb-[330px] lg:pb-0 z-10 col-start-1 lg:col-start-3 col-span-4 lg:col-span-4 flex flex-col gap-4 lg:gap-6 ">
+        <p class="text-sm lg:text-[16px] text-gray font-inter max-w-[390px]">
+            Former competitive player turned dedicated tennis coach. Bringing professional experience, discipline, and modern training methods to every session.
+        </p>
+        <a href="#contact" class="bg-blue text-sm lg:text-[18px] w-fit px-8 py-2 rounded-full">Contact me</a>
     </article>
     
-    <img src="/images/jaume-hero.png" class="z-10 absolute right-28 bottom-0 h-screen">
+    <img src="/images/jaume-hero.png" class="z-10 absolute right-2 lg:right-28 bottom-0 h-[400px] lg:h-screen">
     
-    <Gradient class="z-0 w-full absolute top-0 left-0"/>
+    <Gradient class="z-0 w-auto lg:w-full h-screen lg:h-auto absolute top-0 left-0"/>
 </section>

@@ -1,4 +1,4 @@
-<section class="grid grid-cols-12 px-5 lg:px-10 gap-4 relative w-full py-20 bg-black">
+<section id="contact" class="grid grid-cols-12 px-5 lg:px-10 gap-4 relative w-full py-20 bg-black">
     <article class="mt-10 col-start-1 lg:col-start-2 col-span-12 lg:col-span-10 flex flex-col gap-4">
         <h3 class="text-blue font-semibold">Contact with me</h3>
         <div class="w-full flex justify-between intems-center">
@@ -9,11 +9,62 @@
             </div>
         </div>
     </article>
-    <form class="mt-10 col-start-1 lg:col-start-2 col-span-12 lg:col-span-10 grid grid-cols-3 gap-4 font-inter">
-        <input type="text" name="name" id="name" placeholder="Full Name" class="col-span-3 lg:col-span-1 p-4 rounded-full w-full bg-dark-gray text-gray border-0 focus:border-blue outline-none">
-        <input type="text" name="phone" id="phone" placeholder="Phone Number" class="col-span-3 lg:col-span-1 p-4 rounded-full w-full bg-dark-gray text-gray border-0 focus:border-blue outline-none">
-        <input type="email" name="email" id="email" placeholder="Email Address" class="col-span-3 lg:col-span-1 p-4 rounded-full w-full bg-dark-gray text-gray border-0 focus:border-blue outline-none">
-        <textarea name="message" id="message" rows="8" placeholder="Your Message" class="col-span-3 p-4 rounded-3xl w-full bg-dark-gray text-gray border-0 focus:border-blue outline-none"></textarea>
+    <form id="contact-id" class="mt-10 col-start-1 lg:col-start-2 col-span-12 lg:col-span-10 grid grid-cols-3 gap-4 font-inter">
+        <input type="text" required name="name" id="name" placeholder="Full Name" class="col-span-3 lg:col-span-1 p-4 rounded-full w-full bg-dark-gray text-gray border-0 focus:border-blue outline-none">
+        <input type="text" required name="phone" id="phone" placeholder="Phone Number" class="col-span-3 lg:col-span-1 p-4 rounded-full w-full bg-dark-gray text-gray border-0 focus:border-blue outline-none">
+        <input type="email" required name="email" id="email" placeholder="Email Address" class="col-span-3 lg:col-span-1 p-4 rounded-full w-full bg-dark-gray text-gray border-0 focus:border-blue outline-none">
+        <textarea name="message" required id="message" rows="8" placeholder="Your Message" class="col-span-3 p-4 rounded-3xl w-full bg-dark-gray text-gray border-0 focus:border-blue outline-none"></textarea>
         <button type="submit" class="justify-self-end cursor-pointer col-start-3 mt-5 bg-blue text-[18px] w-fit px-8 py-2 rounded-full">Send</button>
     </form>  
 </section>
+
+
+
+
+
+<script>
+import emailjs from '@emailjs/browser';
+
+emailjs.init({
+  publicKey: 'zn4TVF3i-0u0nfL4D',
+  // Do not allow headless browsers
+  blockHeadless: true,
+  blockList: {
+    // Block the suspended emails
+    list: ['foo@emailjs.com', 'bar@emailjs.com'],
+    // The variable contains the email address
+    watchVariable: 'userEmail',
+  },
+  limitRate: {
+    // Set the limit rate for the application
+    id: 'app',
+    // Allow 1 request per 10s
+    throttle: 10000,
+  },
+});
+  document.getElementById("contact-id").addEventListener("submit", function (e) {
+    e.preventDefault(); // 🚫 evita recarga
+
+    let params = {
+      name: document.getElementById("name").value,
+      phone: document.getElementById("phone").value,
+      email: document.getElementById("email").value,
+      message: document.getElementById("message").value,
+    };
+
+    emailjs
+      .send("service_vjllo9o", "template_wlzx8mh", params)
+      .then(() => {
+        alert("Message sent successfully");
+        e.target.reset(); // limpia el formulario
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("Error sending message");
+      });
+  });
+</script>
+
+<script>
+  console.log("emailjs:", emailjs);
+</script>
