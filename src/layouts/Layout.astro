@@ -7,6 +7,13 @@ import { useTranslations } from "../i18n/util";
 import { languages } from "../i18n/ui";
 const currentLang = Astro.currentLocale || "es";
 const translateLabels = useTranslations(currentLang as keyof typeof languages);
+
+
+
+const localizedLink = (path: string) => {
+  if (currentLang === "es") return path;
+  return `/${currentLang}${path}`;
+};
 ---
 
 <!doctype html>
@@ -14,10 +21,10 @@ const translateLabels = useTranslations(currentLang as keyof typeof languages);
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" href="favicon/favicon.ico" type="image/x-icon">
-		<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-		<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-		<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+		<link rel="icon" href="/favicon/favicon.ico" type="image/x-icon">
+		<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
 		<meta name="generator" content={Astro.generator} />
 		<title>{translateLabels("meta.title")}</title>
 		<meta name="description" content={translateLabels("meta.description")} />

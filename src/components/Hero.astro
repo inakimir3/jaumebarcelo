@@ -1,5 +1,15 @@
 ---
 import Gradient from "../assets/Gradient.astro"
+
+import { useTranslations } from "../i18n/util";
+import { languages } from "../i18n/ui";
+const currentLang = Astro.currentLocale || "es";
+const translateLabels = useTranslations(currentLang as keyof typeof languages);
+
+const localizedLink = (path: string) => {
+  if (currentLang === "es") return path;
+  return `/${currentLang}${path}`;
+};
 ---
 
 <section class="grid grid-cols-4 lg:grid-cols-12 px-5 lg:px-10 gap-0 lg:gap-4 relative w-full h-auto lg:h-screen bg-dark-blue overflow-hidden">
@@ -14,7 +24,7 @@ import Gradient from "../assets/Gradient.astro"
         <a href="#contact" class="bg-blue text-sm lg:text-[18px] w-fit px-8 py-2 rounded-full">Contact me</a>
     </article>
     
-    <img src="/public/images/jaume-hero.png" class="z-10 absolute right-2 lg:right-28 bottom-0 h-[400px] lg:h-screen">
+    <img src="/images/jaume-hero.png" class="z-10 absolute right-2 lg:right-28 bottom-0 h-[400px] lg:h-screen">
     
     <Gradient class="z-0 w-auto lg:w-full h-screen lg:h-auto absolute top-0 left-0"/>
 </section>

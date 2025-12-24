@@ -1,11 +1,23 @@
+---
+import { useTranslations } from "../i18n/util";
+import { languages } from "../i18n/ui";
+const currentLang = Astro.currentLocale || "es";
+const translateLabels = useTranslations(currentLang as keyof typeof languages);
+
+const localizedLink = (path: string) => {
+  if (currentLang === "es") return path;
+  return `/${currentLang}${path}`;
+};
+---
+
 <section class="grid grid-cols-12 px-5 lg:px-10 gap-4 relative w-full">
 
     <article 
         class="lg:-mt-10 w-full aspect-6/4 relative col-start-1 lg:col-start-2 col-span-12 lg:col-span-5 rounded-xl overflow-hidden cursor-pointer"
         id="open-video"
     >
-        <img src="/public/images/icon/play.svg" class="w-16 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"/>
-        <img src="/public/images/jaume2.webp" class="w-full aspect-6/4 rounded-xl object-cover"/>
+        <img src="/images/icon/play.svg" class="w-16 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"/>
+        <img src="/images/jaume2.webp" class="w-full aspect-6/4 rounded-xl object-cover"/>
     </article>
 
     <article class="mt-10 col-start-1 lg:col-start-8 col-span-12 lg:col-span-3 flex flex-col gap-4">
@@ -36,7 +48,7 @@
 
         <video 
             id="video-player"
-            src="/public/videos/video.MP4" 
+            src="/videos/video.MP4" 
             controls 
             autoplay
             class="w-full max-h-[90vh] rounded-2xl"
