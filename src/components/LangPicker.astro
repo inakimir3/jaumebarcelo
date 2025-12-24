@@ -1,0 +1,76 @@
+---
+const { bghovercolor = "black", hovercolor = "white" } = Astro.props;
+import { languages } from "../i18n/ui";
+
+const currentLang = Astro.currentLocale || "es";
+const currentLabel = languages[currentLang] || "Español";
+
+// obtenemos la ruta actual
+const currentPath = Astro.url.pathname;
+
+// función para reemplazar el idioma en la ruta actual
+function getLocalizedPath(lang) {
+  // si el idioma actual está en la ruta (por ejemplo /es/about)
+  const parts = currentPath.split("/").filter(Boolean);
+
+  // si la primera parte es un idioma, la quitamos
+  if (Object.keys(languages).includes(parts[0])) {
+    parts.shift();
+  }
+
+  // si el idioma nuevo es "en" (el principal), no añadimos prefijo
+  return lang === "es" ? `/${parts.join("/")}` : `/${lang}/${parts.join("/")}`;
+}
+---
+
+<div 
+  class={`lang-switcher relative z-20 group rounded-full text-[14px] lg:text-[16px]  px-8 py-2 flex justify-center items-center backdrop-blur-md cursor-pointer hover:bg-${bghovercolor} transition-colors duration-300`}
+>
+  <span class="group-hover:text-white">{currentLabel}</span>
+
+  <div 
+    class="lang-menu absolute top-full left-0 w-full mt-2 flex-col rounded-[20px] shadow-lg gap-0 opacity-0 pointer-events-none translate-y-[-10px] transition-all duration-300 ease-out"
+  >
+    {
+      Object.entries(languages).map(([key, label]) => {
+        if (key === currentLang) return null;
+        const href = getLocalizedPath(key);
+        return (
+          <a 
+            href={href} 
+            class="px-6 py-2 flex justify-center items-center w-full hover:bg-black hover:text-white rounded-full transition-colors"
+          >
+            {label}
+          </a>
+        );
+      })
+    }
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.lang-switcher').forEach((switcher) => {
+    const menu = switcher.querySelector('.lang-menu');
+
+    switcher.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = menu.classList.contains('open');
+
+      if (isOpen) {
+        menu.classList.remove('open');
+        menu.classList.remove('opacity-100', 'translate-y-0');
+        menu.classList.add('opacity-0', 'translate-y-[-10px]', 'pointer-events-none');
+      } else {
+        menu.classList.add('open');
+        menu.classList.remove('opacity-0', 'translate-y-[-10px]', 'pointer-events-none');
+        menu.classList.add('opacity-100', 'translate-y-0');
+      }
+    });
+
+    document.addEventListener('click', () => {
+      menu.classList.remove('open');
+      menu.classList.remove('opacity-100', 'translate-y-0');
+      menu.classList.add('opacity-0', 'translate-y-[-10px]', 'pointer-events-none');
+    });
+  });
+</script>

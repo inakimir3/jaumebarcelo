@@ -1,6 +1,22 @@
+---
+import LangPicker from "./LangPicker.astro"
+
+const currentLang = Astro.currentLocale || "es";
+
+import { useTranslations } from "../i18n/util";
+import { languages } from "../i18n/ui";
+const translateLabels = useTranslations(currentLang as keyof typeof languages);
+
+
+const localizedLink = (path: string) => {
+  if (currentLang === "en") return path;
+  return `/${currentLang}${path}`; 
+};
+
+---
 <header class="px-5 lg:px-10 py-5 lg:py-10 flex justify-between items-center w-full absolute top-0 left-0 z-50 font-medium">
-    <a href="/" class="text-[20px]">Jaume Barceló</a>
+    <a href={localizedLink("/")} class="text-[20px]">Jaume Barceló</a>
     <nav class="flex items-center gap-8 text-[20px]">
-        <a href="#about" class="hover:underline underline-offset-4">EN</a>
+        <LangPicker/>
     </nav>
 </header>

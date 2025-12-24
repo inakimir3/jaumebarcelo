@@ -10,5 +10,14 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
-  adapter: vercel()
+  adapter: vercel(),
+
+  i18n: {
+    locales: ["es", "en", "ca"],
+    defaultLocale: "es",
+    routing:{
+      prefixDefaultLocale: false,
+    },
+  },
+
 });
