@@ -1,5 +1,5 @@
 
-<div class="swiper relative">
+<div class="swiper relative mt-5 lg:mt-0">
     <div class="swiper-wrapper">
             <div class="swiper-slide">
                 <img src="images/college3.webp" class="max-w-80 w-full object-cover aspect-674/619 rounded-xl"  />
@@ -28,15 +28,7 @@
         width: 100%;
     }
 
-    /* .swiper-pagination {
-        position: absolute;
-        bottom: -20px !important;
-        z-index: 30 !important;
-        width: 100%;
-        display: contents;
-        left: 50% !important;
-        transform: translateX(-50%);
-    } */
+   
 </style>
 
 <script>
@@ -45,18 +37,28 @@ import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 
 
-
 const swiper = new Swiper('.swiper', {
-    slidesPerView: 2,
-    centeredSlides: true,
-    spaceBetween: 16,
-    autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-      },
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
+  spaceBetween: 16,
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  watchOverflow: true,
+  // Mobile (default)
+  slidesPerView: 1.2,
+  centeredSlides: false,
+
+  breakpoints: {
+    1024: { // lg
+      slidesPerView: 2,
+      centeredSlides: true,
+    }
+  }
 });
+
+
 </script>
