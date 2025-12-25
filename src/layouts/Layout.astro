@@ -29,10 +29,9 @@ const localizedLink = (path: string) => {
 		<meta name="generator" content={Astro.generator} />
 		<title>{translateLabels("meta.title")}</title>
 		<meta name="description" content={translateLabels("meta.description")} />
-		
+		<Analytics />
 	</head>
 	<body class="relative">
-		<Analytics />
 		<main>
 			<Header />
           		<slot />	
