@@ -8,6 +8,7 @@ import { languages } from "../i18n/ui";
 const currentLang = Astro.currentLocale || "es";
 const translateLabels = useTranslations(currentLang as keyof typeof languages);
 
+import Analytics from '@vercel/analytics/astro'
 
 
 const localizedLink = (path: string) => {
@@ -31,6 +32,7 @@ const localizedLink = (path: string) => {
 		
 	</head>
 	<body class="relative">
+		<Analytics />
 		<main>
 			<Header />
           		<slot />	
