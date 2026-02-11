@@ -17,7 +17,7 @@ const localizedLink = (path: string) => {
             <h2 class="text-2xl lg:text-[40px] leading-12">{translateLabels("form.title")}</h2>
             <div class="flex items-center gap-6 text-[14px] lg:text-[16px]">
                 <img src="/images/icon/phone.svg" class="size-5">
-                <p>{translateLabels("form.phone")}: <a href="#">{translateLabels("form.phoneNumber")}</a></p>
+                <p>{translateLabels("form.phone")}: <a href={`tel:${translateLabels("form.phoneNumber")}`}>{translateLabels("form.phoneNumber")}</a></p>
             </div>
         </div>
     </article>
